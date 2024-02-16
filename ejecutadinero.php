@@ -2,8 +2,8 @@
 
 
 extract($_POST);
-	require("bancoconexion.php");
-	$sentencia="update dinero set dinero='$dinero' where id='$id'";
+	require("conexiones/bancoconexion.php");
+	$sentencia="update cliente set saldo='$saldo' where id='$id'";
 	$resent=mysqli_query($mysqli,$sentencia);
 	if ($resent==null) {
 		echo '<script>alert("ERROR EN PROCESAMIENTO DE LA TRASFERENCIA ")</script> ';

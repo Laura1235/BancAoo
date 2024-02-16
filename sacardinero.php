@@ -2,7 +2,7 @@
 
 <head>
 
-   </script><title>BanVirtual</title>
+   </script><title>BancApp</title>
 
   <link rel="icon" type="image/png" href="imagenes/bancolombia.png" />
 
@@ -63,30 +63,31 @@
 
 <?php
 		extract($_GET);
-		require("conexion.php");
+		require("conexiones/conexion.php");
 
-		$sql="SELECT * FROM dinero WHERE id=$id";
+		$sql="SELECT * FROM cliente WHERE id=$id";
 		$ressql=mysqli_query($mysqli,$sql);
 		while ($row=mysqli_fetch_row ($ressql)){
 		    	$id=$row[0];
-		    	$dinero=$row[1];
+				$numeroCta=$row[1];
+		    	$saldo=$row[4];
 		    	$dineros=0;
 
 		    }
 
-		    if($dinero>0){
+		    if($saldo>0){
 
 echo"<script>alert('Usted si tiene dinero en su cuenta bancaria ')</script>";
-echo"<font color='black' size='5'>(Usted si tiene dinero en su cuenta bancaria )</font>";
+echo"<font color='black' size='5'>Retiro de dinero</font>";
 echo "<br>";
 echo "<br>";
 
 echo '<form action="ejecutaactualizar.php" method="post">';
 
-echo "<font color='black' size='4'>ID</font><br><input type='text' class='form-control' name='id' value= ", $id ," readonly='readonly'";
+echo "<font color='black' size='4'>Numero de Cuenta</font><br><input type='text' class='form-control' name='numeroCta' value= ", $numeroCta," readonly='readonly'";
 echo "<br>";
 echo "<br>";
-echo "<font color='black' size='4'>Dinero actual</font><br><input type='text' class='form-control' name='dinero' value= ", $dinero ," readonly='readonly'";
+echo "<font color='black' size='4'>Dinero actual</font><br><input type='text' class='form-control' name='saldo' value= ", $saldo," readonly='readonly'";
 echo "<br>";
 echo "<br>";
 echo "<br>";
@@ -104,7 +105,7 @@ echo"<a href='retiro.php'><input type='submit' value='Retirar dinero' class='btn
 	echo"(Usted no tiene dinero en su cuenta bancaria )";
 echo "<br>";
 echo "<br>";
-echo "Dinero actual<br><input type='text' class='form-control' name='id' value= ", $dinero ," readonly='readonly'";
+echo "Dinero actual<br><input type='text' class='form-control' name='id' value= ", $saldo ," readonly='readonly'";
 echo "<br>";
 echo "<br>";
 	echo'<a href="midinero.php"><button>Volver</button></a>';

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (@!$_SESSION['user']) {
+if (@!$_SESSION['nombre']) {
   header("Location:index.php");
 }elseif ($_SESSION['rol']==2) {
   header("Location:index2.php");
@@ -10,59 +10,13 @@ if (@!$_SESSION['user']) {
 
 <head>
 
-   </script><title>BANVIRTUAL</title>
+   </script><title>BancApp</title>
 
   <link rel="icon" type="image/png" href="imagenes/bancolombia.png" />
-
-
-    <link href="static/css/style.css" rel="stylesheet">
-            
-    <style>
-
-
-
-#home-box {
-	display: block;
-	background: #D2D2D2;
-	color: #fff;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-moz-border-radius-topleft: 3px;
-	-moz-border-radius-topright: 3px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
-#home-box .content {
-	padding: 25px 30px;
-	line-height: 22px;
-}
-
-#home-box .content h1 {
-	font-size: 26px;
-	font-weight: normal;
-	line-height: 32px;
-	text-align: center;
-	margin-top: 0px;
-	margin-bottom: 5px;
-
-}
-
-
-
-    </style>
-  
-
-  
-
+  <link href="static/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/banVirtualAdmin.css">
 </head>
   <body class="bg-light">
-
-
-
-
-
-
 <main role="main" class="container">
 <div class="row">
 <div class="col-12">
@@ -75,8 +29,8 @@ if (@!$_SESSION['user']) {
 
       <?php
 
-        require("bancoconexion.php");
-        $sql=("SELECT * FROM cuentas");
+        require("conexiones/bancoconexion.php");
+          $sql=("SELECT * FROM cliente");
   
         $query=mysqli_query($mysqli,$sql);
 
@@ -85,13 +39,13 @@ if (@!$_SESSION['user']) {
                       echo "<tr>";
 
             echo "<th>Id</th>";
+            echo "<th>Numero de cuenta</th>";
+            echo "<th>Fecha de creación</th>";
             echo "<th>Nombre</th>";
-            echo "<th>contraseña</th>";
-            echo "<th>Correo</th>";
-            echo "<th>Tipo de Cuenta</th>";
-            echo "<th>Documento</th>";
-            echo "<th>Contraseña admin</th>";
-            echo "<th>Rol</th>";
+            echo "<th>Saldo</th>";
+            echo "<th>Estado</th>";
+            echo "<th>Cedula de Ciudadania</th>";
+            echo "<th>Telefono</th>";
             echo "<th>Editar</th>";
             echo "<th>Eliminar</th>";
           echo "</tr>";
@@ -126,7 +80,7 @@ echo "<td><a href='banvirtualadmin.php?id=$arreglo[0]&idborrar=2'><img src='imag
           extract($_GET);
           if(@$idborrar==2){
     
-            $sqlborrar="DELETE FROM cuentas WHERE id=$id";
+            $sqlborrar="DELETE FROM cliente WHERE id=$id";
             $resborrar=mysqli_query($mysqli,$sqlborrar);
             echo '<script>alert("BANCOLOMBIA A ELIMINADO A ESTE USUARIO")</script> ';
             echo "<script>location.href='banvirtualadmin.php'</script>";
@@ -161,8 +115,8 @@ echo "<td><a href='banvirtualadmin.php?id=$arreglo[0]&idborrar=2'><img src='imag
 
       <?php
 
-        require("bancoconexion.php");
-        $sql=("SELECT * FROM dinero");
+        require("conexiones/bancoconexion.php");
+        $sql=("SELECT * FROM cliente");
   
         $query=mysqli_query($mysqli,$sql);
 
@@ -171,7 +125,7 @@ echo "<td><a href='banvirtualadmin.php?id=$arreglo[0]&idborrar=2'><img src='imag
                       echo "<tr>";
 
             echo "<th>Id</th>";
-            echo "<th>Dinero</th>";
+            echo "<th>Saldo</th>";
             echo "<th>Editar</th>";
             echo "<th>Eliminar</th>";
           echo "</tr>";
@@ -184,7 +138,7 @@ echo "<td><a href='banvirtualadmin.php?id=$arreglo[0]&idborrar=2'><img src='imag
          while($arreglo=mysqli_fetch_array($query)){
             echo "<tbody class='table-warning text-dark'>";
               echo "<td>$arreglo[0]</td>";
-              echo "<td>$arreglo[1]</td>";
+              echo "<td>$arreglo[4]</td>";
 
 
 echo "<td><a href='actualizardinero.php?id=$arreglo[0]'><img src='imagenes/modificar.png' width='60' class='img-rounded'></td>";
@@ -200,9 +154,9 @@ echo "<td><a href='banvirtualadmin.php?id=$arreglo[0]&idborrar=2'><img src='imag
           extract($_GET);
           if(@$idborrar==2){
     
-            $sqlborrar="DELETE FROM dinero WHERE id=$id";
+            $sqlborrar="DELETE FROM cliente WHERE id=$id";
             $resborrar=mysqli_query($mysqli,$sqlborrar);
-            echo '<script>alert("BANVIRTUAL A ELIMINADO A ESTE USUARIO")</script> ';
+            echo '<script>alert("BancaApp A ELIMINADO A ESTE USUARIO")</script> ';
             echo "<script>location.href='banvirtualadmin.php'</script>";
           }
 

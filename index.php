@@ -1,135 +1,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-
-   </script><title>BANVIRTUAL</title>
+   </script><title>BancApp</title>
 
   <link rel="icon" type="image/png" href="imagenes/bancolombia.png" />
-
-
+    <!-- Importaciones de los estilos -->
     <link href="static/css/style.css" rel="stylesheet">
-            
-    <style>
-
-
-*{margin:0px; padding:0px; font-family:Helvetica, Arial, sans-serif;}
-
-/* Full-width input fields */
-
-/* Set a style for all buttons */
-button {
-    background-color: #F61414;
-    color: white;
-    padding: 8px 20px;
-    margin: 10px 26px;
-    border: none;
-    cursor: pointer;
-    border-radius: 2px;
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-	font-size:15px;
-}
-button:hover {
-    opacity: 0.6;
-}
-
-/* Center the image and position the close button */
-.imgcontainer {
-    text-align: center;
-    margin:-35px 0 12px 0;
-    position: relative;
-}
-.avatar {
-    width: 200px;
-	height:200px;
-    border-radius: 50%;
-}
-
-/* The Modal (background) */
-.modal {
-	display:none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(85,195,255);
-}
-
-/* Modal Content Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 4% auto 15% auto;
-    border: 1px solid #888;
-    width: 30%; 
-	padding-bottom: 20px;
-}
-
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 50px;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-.close:hover,.close:focus {
-    color: red;
-    cursor: pointer;
-}
-
-/* Add Zoom Animation */
-.animate {
-    animation: zoom 0.8s
-}
-@keyframes zoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-}
-
-
-
-#home-box {
-	display: block;
-	background: #21C6C7;
-	color: #fff;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-moz-border-radius-topleft: 3px;
-	-moz-border-radius-topright: 3px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
-#home-box .content {
-	padding: 25px 30px;
-	line-height: 22px;
-}
-
-#home-box .content h1 {
-	font-size: 26px;
-	font-weight: normal;
-	line-height: 32px;
-	text-align: center;
-	margin-top: 0px;
-	margin-bottom: 5px;
-}
-
-
-
-
-    </style>
-  
-
-  
-
+    <link rel="stylesheet" href="estilos/index_css.css">
 </head>
   <body class="bg-light">
 
+
+  <?php
+  date_default_timezone_set('America/Mexico_City') ;
+  $fecha_actual=date("Y-m-d");
+  ?>
 
 <!----LOGIN ---->
            
@@ -140,7 +25,7 @@ button:hover {
     <div class="imgcontainer">
       <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
       <img src="imagenes/bancolombia.png" width="200" alt="LikeFans" class="LikeFans">
-      <h1 style="text-align:center">BANVIRTUAL</h1>
+      <h1 style="text-align:center">BancApp</h1>
     </div>
 
     <div class="container">
@@ -149,7 +34,7 @@ button:hover {
         <div class="input-group-prepend">
           <div class="input-group-text "><img src="imagenes/user.png" width="20"></div>
         </div>
-        <input type="text" name="mail" class="form-control"  placeholder="Email"  required="">
+        <input type="text" name="correo" class="form-control"  placeholder="Email"  required="">
       </div>
     </div>
      <div class="col-sm-12 my-1">
@@ -157,7 +42,7 @@ button:hover {
         <div class="input-group-prepend">
           <div class="input-group-text"><img src="imagenes/pass.png" width="20"></div>
         </div>
-        <input type="password" name="pass" class="form-control"  placeholder="Contraseña" required="">
+        <input type="password" name="contraseña" class="form-control"  placeholder="Contraseña" required="">
       </div>
     </div>
 
@@ -186,65 +71,97 @@ button:hover {
     <div class="imgcontainer">
       <span onclick="document.getElementById('modal2-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
       <img src="imagenes/bancolombia.png" width="200" alt="LikeFans" class="LikeFans">
-            <h1 style="text-align:center">BANVIRTUAL</h1>
+            <h1 style="text-align:center">BancApp</h1>
     </div>
 
     <div class="container">
+
+<!-- Fecha de apertura -->
+    <div class="col-sm-12 my-1">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text "><img src="imagenes/user.png" width="20"></div>
+        </div>
+        <input type="datetime" name="fechaApertura" class="form-control"  placeholder="" required="" value="<?=$fecha_actual?>">
+      </div>
+    </div>
+<!-- Fin Fecha de apertura -->
+
+<!-- Nombres -->
    <div class="col-sm-12 my-1">
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text "><img src="imagenes/user.png" width="20"></div>
         </div>
-        <input type="text" name="realname" class="form-control"  placeholder="Usuario" required="">
+        <input type="text" name="nombre" class="form-control"  placeholder="Nombres" required="">
       </div>
     </div>
+<!-- Fin Nombres -->
+
+<!-- Estado de cuenta -->
      <div class="col-sm-12 my-1">
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text"><img src="imagenes/email.png" width="20"></div>
         </div>
-        <input type="email" name="nick" class="form-control"  placeholder="Email" required="">
+        <input type="text" name="estado" class="form-control"  placeholder="Estado de cuenta" required="">
       </div>
     </div>
-    <div class="row">
-<div class="col">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text "><img src="imagenes/cuenta.png" width="20"></div>
-        </div>
-         <select  class="form-control" name="tdocumento" required="">
-<option selected>Tipo</option>
-<option value="cedula de ciudadania">Monetaria</option>
-<option value="cedula extranjera">Ahorro</option>
-<option value="Numero unico de identificación personal">Infantil</option>
-</select>
-      </div>
-    </div>
-    <div class="col">
+<!-- Fin estado de cuenta -->
+
+<!-- Cedula de ciudadania -->
+    <div class="col-sm-12 my-1">
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text "><img src="imagenes/identidad.png" width="20"></div>
         </div>
-        <input type="text" name="documento" class="form-control"  placeholder="CUI" required="">
+        <input type="text" name="cedulaCliente" class="form-control"  placeholder="Cedula de Ciudadania" required="">
       </div>
     </div>
-    </div>
+<!-- Fin cedula de ciudadania -->
+
+<!-- Numero de celular -->
     <div class="col-sm-12 my-1">
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text"><img src="imagenes/pass.png" width="20"></div>
         </div>
-        <input type="password" name="pass" class="form-control"  placeholder="Contraseña" required="">
+        <input type="number" name="telefono" class="form-control"  placeholder="Numero Celular" required="">
       </div>
     </div>
+<!-- Fin numero de celular -->
+
+<!-- Contraseñas -->
     <div class="col-sm-12 my-1">
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text"><img src="imagenes/pass.png" width="20"></div>
         </div>
-        <input type="password" name="rpass" class="form-control"  placeholder="Repetir contraseña" required="">
+        <input type="password" name="contraseña" class="form-control"  placeholder="Contraseña" required="">
       </div>
     </div>
+
+    <div class="col-sm-12 my-1">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><img src="imagenes/pass.png" width="20"></div>
+        </div>
+        <input type="password" name="rcontraseña" class="form-control"  placeholder="Repetir contraseña" required="">
+      </div>
+    </div>
+<!-- Fin de contraseñas -->
+
+<!-- Correo electronico -->
+    <div class="col-sm-12 my-1">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><img src="imagenes/pass.png" width="20"></div>
+        </div>
+        <input type="email" name="correo" class="form-control"  placeholder="Email" required="">
+      </div>
+    </div>
+
+<!-- Fin de correo electronico -->
 
        <input type="checkbox" style="margin:15px 15px;">Recordarme     
       <button type="submit" class="btn btn-warning" >Registrar</button>
@@ -264,9 +181,11 @@ button:hover {
             <div class="my-3 p-3 bg-white rounded box-shadow box-style">
                 <div id="home-box">
                     <div class="content">
-                        <h1 style="font-size:x-large; color:black; ">BANVIRTUAL</h1>
+                        <h1 style="font-size:x-large; color:black; ">BancApp</h1>
                         <p class="mt-3 text-left"><img src="imagenes/bancolombia.png" width="500" class="img-fluid float-left" alt="LikeFans" > <h5 style="color:black; ">
                         Somos el Banco líder en ofrecer soluciones financieras a nuestro mercado objetivo, brindando calidad de servicio, eficiencia y oportunidad.</h5></p>
+
+<!-- Botones de redirecciones -->
 <div class="row">
 <div class="col">
 <a class="nav-link" onclick="document.getElementById('modal-wrapper').style.display='block'"><button class="btn btn-warning">INGRESAR BANVIRTUAL</button></a>
@@ -274,7 +193,8 @@ button:hover {
 <div class="col">
 <a class="nav-link" onclick="document.getElementById('modal2-wrapper').style.display='block'"><button class="btn btn-warning">CREAR NUEVA CUENTA</button></a>
 </div>
- </div>
+</div>
+<!-- Fin de botones -->
 
 
                         <div class="clearfix"></div>

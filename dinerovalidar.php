@@ -1,19 +1,19 @@
 <?php
 
-	$dinero=$_POST['dinero'];
+	$saldo=$_POST['saldo'];
 
 
-	require("conexion.php");
-	$checkemail=mysqli_query($mysqli,"SELECT * FROM dinero ");
+	require("conexiones/bancoconexion.php");
+	$checkemail=mysqli_query($mysqli,"SELECT * FROM cliente ");
 	$check_mail=mysqli_num_rows($checkemail);
-		if($dinero<=100000){
+		if($saldo<=100000){
 			if($check_mail>0){
 				echo ' <script language="javascript">alert("USTED YA RECLAMO EL BONO PERMITIDO HAY UN ERROR EN SU TRANSFERENCIA BANCARIA");</script> ';
 				echo ' <script language="javascript">alert("SU DINERO ACTUAL ES");</script> ';
 				echo "<script>location.href='midinero.php'</script>";	
 			}else{
 				
-				mysqli_query($mysqli,"INSERT INTO dinero VALUES('','$dinero')");
+				mysqli_query($mysqli,"INSERT INTO cliente VALUES('','','','','$saldo','','','','','','')");
 
 				echo ' <script language="javascript">alert("TRANSFERENCIA BANCARIA CORRECTAMENTE");</script> ';
 				echo "<script>location.href='midinero.php'</script>";	

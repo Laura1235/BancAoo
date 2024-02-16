@@ -1,67 +1,19 @@
 <?php
 session_start();
-if (@!$_SESSION['user']) {
+if (@!$_SESSION['nombre']) {
   header("Location:index.php");
 }elseif ($_SESSION['rol']==2) {
   header("Location:index2.php");
 }
 ?>
 <html>
-
 <head>
-
-   </script><title>BANVIRTUAL</title>
-
-  <link rel="icon" type="image/png" href="imagenes/bancolombia.png" />
-
-
-    <link href="static/css/style.css" rel="stylesheet">
-            
-    <style>
-
-
-
-#home-box {
-	display: block;
-	background: #D2D2D2;
-	color: #fff;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-moz-border-radius-topleft: 3px;
-	-moz-border-radius-topright: 3px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
-#home-box .content {
-	padding: 25px 30px;
-	line-height: 22px;
-}
-
-#home-box .content h1 {
-	font-size: 26px;
-	font-weight: normal;
-	line-height: 32px;
-	text-align: center;
-	margin-top: 0px;
-	margin-bottom: 5px;
-
-}
-
-
-
-    </style>
-  
-
-  
-
+   </script><title>BancApp</title>
+	<link rel="icon" type="image/png" href="imagenes/bancolombia.png" />
+	<link href="static/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="estilos/actualizarCuenta.css">
 </head>
-  <body class="bg-light">
-
-
-
-
-
+<body class="bg-light">
 
 <main role="main" class="container">
 <div class="row">
@@ -73,31 +25,36 @@ if (@!$_SESSION['user']) {
 <center>
 <?php
 		extract($_GET);
-		require("bancoconexion.php");
+		require("conexiones/bancoconexion.php");
 
-		$sql="SELECT * FROM cuentas WHERE id=$id";
+		$sql="SELECT * FROM cliente WHERE id=$id";
 		$ressql=mysqli_query($mysqli,$sql);
 		while ($row=mysqli_fetch_row ($ressql)){
-		    	$id=$row[0];
-		    	$user=$row[1];
-		    	$pass=$row[2];
-		    	$email=$row[3];
-		    	$tdocumento=$row[4];
-		    	$documento=$row[5];
-		    	$pasadmin=$row[6];
+		    	$numeroCta=$row[1];
+		    	$nombre=$row[3];
+		    	$saldo=$row[4];
+		    	$estado=$row[5];
+		    	$cedulaCliente=$row[6];
+		    	$telefono=$row[7];
+				$contraseña=$row[8];
+				$correo=$row[9];
+				$rol=$row[10];
+				$pasadmin=$row[11];
 		    }
-
-
 
 		?>
 
 		<form action="ejecutacuenta.php" method="post">
 				Id<br><input type="text" class="form-control" name="id" value= "<?php echo $id ?>" readonly="readonly"><br>
-				Usuario<br> <input type="text" class="form-control" name="user" value="<?php echo $user?>"><br>
-				Contraseña usuario<br> <input type="text"class="form-control"  name="pass" value="<?php echo $pass?>"><br>
-				Correo<br> <input type="text" class="form-control" name="email" value="<?php echo $email?>"><br>
-				tdocumento<br> <input type="text" class="form-control" name="tdocumento" value="<?php echo $tdocumento?>"><br>
-				documento<br> <input type="text" class="form-control" name="documento" value="<?php echo $documento?>"><br>
+				Numero de Cuenta<br> <input type="text" class="form-control" name="numeroCta" value="<?php echo $numeroCta?>" readonly="readonly"><br>
+				<!-- Fecha de apertura<br> <input type="text" class="form-control" name="fechaApertura" value="<?php echo $fechaApertura?>"><br> -->
+				Nombre<br> <input type="text"class="form-control"  name="nombre" value="<?php echo $nombre?>"><br>
+				Estado de la cuenta<br> <input type="text"class="form-control"  name="estado" value="<?php echo $estado?>"><br>
+				Cedula del cliente<br> <input type="text"class="form-control"  name="cedulaCliente" value="<?php echo $cedulaCliente?>"><br>
+				Telefono<br> <input type="number"class="form-control"  name="telefono" value="<?php echo $telefono?>"><br>
+				Contraseña usuario<br> <input type="text"class="form-control"  name="contraseña" value="<?php echo $contraseña?>"><br>
+				Correo<br> <input type="email" class="form-control" name="correo" value="<?php echo $correo?>"><br>
+				Rol<br> <input type="number" class="form-control" name="documento" value="<?php echo $rol?>"><br>
 				Contraseña admin<br> <input type="text"class="form-control"  name="pasadmin" value="<?php echo $pasadmin?>"><br>
 				
 				<br>

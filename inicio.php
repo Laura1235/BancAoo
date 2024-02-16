@@ -1,6 +1,6 @@
   <?php
   session_start();
-  if (@!$_SESSION['user']) {
+  if (@!$_SESSION['nombre']) {
     header("Location:index.php");
   }elseif ($_SESSION['rol']==1) {
     header("Location:admin.php");
@@ -10,47 +10,11 @@
 
 <head>
 
-   </script><title>BANVIRTUAL</title>
+   </script><title>BancApp</title>
 
   <link rel="icon" type="image/png" href="imagenes/bancolombia.png" />
-
-
-    <link href="static/css/style.css" rel="stylesheet">
-            
-    <style>
-
-
-
-#home-box {
-	display: block;
-	background: #D2D2D2;
-	color: #fff;
-	-webkit-border-top-left-radius: 3px;
-	-webkit-border-top-right-radius: 3px;
-	-moz-border-radius-topleft: 3px;
-	-moz-border-radius-topright: 3px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
-#home-box .content {
-	padding: 25px 30px;
-	line-height: 22px;
-}
-
-#home-box .content h1 {
-	font-size: 26px;
-	font-weight: normal;
-	line-height: 32px;
-	text-align: center;
-	margin-top: 0px;
-	margin-bottom: 5px;
-}
-
-
-
-    </style>
-  
+  <link href="static/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/inicio.css">
 
   
 
@@ -60,13 +24,13 @@
 
 <?php
     extract($_GET);
-    require("conexion.php");
+    require("conexiones/conexion.php");
 
-    $sql="SELECT * FROM dinero ";
+    $sql="SELECT * FROM cliente ";
     $ressql=mysqli_query($mysqli,$sql);
     while ($row=mysqli_fetch_row ($ressql)){
           $id=$row[0];
-          $dinero=$row[1];
+          $saldo=$row[4];
 
         }
 
@@ -75,13 +39,13 @@
 
 <?php
     extract($_GET);
-    require("conexion.php");
+    require("conexiones/conexion.php");
 
-    $sql="SELECT * FROM cuentas ";
+    $sql="SELECT * FROM cliente ";
     $ressql=mysqli_query($mysqli,$sql);
     while ($row=mysqli_fetch_row ($ressql)){
           $id=$row[0];
-          $dinero=$row[1];
+          $saldo=$row[4];
 
         }
 
@@ -90,7 +54,7 @@
 
 <?php
 
-if($dinero>1){
+if($saldo>4){
 
 
 
@@ -102,7 +66,7 @@ echo'<div id="home-box">';
 echo'<div class="content"><a href="desconectar.php"><input  class="btn btn-danger" type="submit" name="submit" value="X"/></a>';
 echo'<form method="post" action="dinerovalidar.php" ><br>';
 echo'<div class="form-group">';
-echo"<center><font color='black' size='7'><p class='small text-uppercase'>BIENVENIDO ", $_SESSION['user'], "</p></font></center>";
+echo"<center><font color='black' size='7'><p class='small text-uppercase'>BIENVENIDO ", $_SESSION['nombre'], "</p></font></center>";
 echo'<br>';
 echo'<center><img src="imagenes/banco.png" width="500" height="100"></center>';
 echo'<br>';
@@ -111,7 +75,7 @@ echo'<br>';
 echo'<center><font color="black" size="5">Este es un bono</font></center>';
 echo'<br>';
 echo'<center>';
-echo'<label style="font-size: 14pt; color:  black;"><b>Solo puedes ingresar montos en Quetsales</b></label><br>';
+echo'<label style="font-size: 14pt; color:  black;"><b>Solo puedes ingresar montos en pesos Colombianos</b></label><br>';
 echo'<input type="number" name="dinero" class="btn btn- "  placeholder="Dinero" required="" />';
 echo'</center>';
 echo'</div>';
@@ -139,7 +103,7 @@ echo'<div class="my-3 p-3 bg-white rounded box-shadow box-style">';
 echo'<div id="home-box">';
 echo'<div class="content"><a href="desconectar.php"><input  class="btn btn-danger" type="submit" name="submit" value="X"/></a>';
 echo'<div class="form-group">';
-echo"<center><font color='black' size='7'><p class='small text-uppercase'>BIENVENIDO ", $_SESSION['user'], "</p></font></center>";
+echo"<center><font color='black' size='7'><p class='small text-uppercase'>BIENVENIDO ", $_SESSION['nombre'], "</p></font></center>";
 echo'<br>';
 echo'<center><img src="imagenes/banco.png" width="300" height="300"></center>';
 echo'<br>';

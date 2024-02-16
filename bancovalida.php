@@ -1,31 +1,34 @@
+<!-- Esta es la validación para el inicio de sesion -->
+
 <?php
 
 session_start();
-	require("bancoconexion.php");
+	require("conexiones/bancoconexion.php");
+	$usuario=$_POST['correo'];
+	$contraseña=$_POST['contraseña'];
 
-	$usuario=$_POST['mail'];
-	$pass=$_POST['pass'];
 
-
-	$sql2=mysqli_query($mysqli,"SELECT * FROM cuentas WHERE email='$usuario'");
+	$sql2=mysqli_query($mysqli,"SELECT * FROM cliente WHERE correo='$usuario'");
+	
 	if($f2=mysqli_fetch_assoc($sql2)){
-		if($pass==$f2['pasadmin']){
-			$_SESSION['id']=$f2['id'];
-			$_SESSION['user']=$f2['user'];
+		if($contraseña==$f2['pasadmin']){
+			$_SESSION['numeroCta']=$f2['numeroCta'];
+			$_SESSION['nombre']=$f2['nombre'];
 			$_SESSION['rol']=$f2['rol'];
 
-			echo '<script>alert("BIENVENIDO A BANVIRTUAL ADMINISTRADOR")</script> ';
+			echo '<script>alert("BIENVENIDO A BancApp ADMINISTRADOR")</script> ';
 			echo "<script>location.href='admin.php'</script>";
 		
 		}
 	}
 
 
-	$sql=mysqli_query($mysqli,"SELECT * FROM cuentas WHERE email='$usuario'");
+	$sql=mysqli_query($mysqli,"SELECT * FROM cliente WHERE correo='$usuario'");
+
 	if($f=mysqli_fetch_assoc($sql)){
-		if($pass==$f['password']){
-			$_SESSION['id']=$f['id'];
-			$_SESSION['user']=$f['user'];
+		if($contraseña==$f['contraseña']){
+			$_SESSION['numeroCta']=$f['numeroCta'];
+			$_SESSION['nombre']=$f['nombre'];
 			$_SESSION['rol']=$f['rol'];
 
 			echo '<script>alert("BIENVENIDO A BANVIRTUAL")</script> ';

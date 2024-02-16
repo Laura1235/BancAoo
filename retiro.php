@@ -1,13 +1,13 @@
 
 <?php
 		extract($_GET);
-		require("conexion.php");
+		require("conexiones/conexion.php");
 
-		$sql="SELECT * FROM dinero ";
+		$sql="SELECT * FROM cliente ";
 		$ressql=mysqli_query($mysqli,$sql);
 		while ($row=mysqli_fetch_row ($ressql)){
 		    	$id=$row[0];
-		    	$dinero=$row[1];
+		    	$saldo=$row[4];
 
 		    }
 
@@ -17,7 +17,7 @@
 
 <head>
 
-   </script><title>Bancolombia</title>
+   </script><title>BancaApp</title>
 
   <link rel="icon" type="image/png" href="imagenes/bancolombia.png" />
 
@@ -94,7 +94,7 @@ document.MyForm.dinero.value=n1-n2;
 <br>
 <br>
 <label><font color="black" size="5">Su dinero actual es:</font></label>
-<input type="number" class="form-control" name="numero1" value="<?php echo $dinero?>" size="20" readonly="readonly">
+<input type="number" class="form-control" name="saldo" value="<?php echo $saldo?>" size="20" readonly="readonly">
 <br>
 <br>
 <label><font color="black" size="5">Cantidad de dinero que desea retirar:</font></label>
@@ -102,7 +102,7 @@ document.MyForm.dinero.value=n1-n2;
 <br>
 <br>
 <label><font color="black" size="5">El dinero que le quedaria en la cuenta seria:</font></label>
-<input type="number" class="form-control" name="dinero" size="20" readonly='readonly'> 
+<input type="number" class="form-control" name="saldo" size="20" readonly='readonly'> 
 <br>
 
 <input type="button" class="btn btn-primary" value="Visualizar" onclick="sumar()"> 
